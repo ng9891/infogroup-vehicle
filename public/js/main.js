@@ -10,8 +10,9 @@
     monthBarChart: dc.barChart('#monthly-chart'),
     barYearChart: dc.rowChart('#barYearChart'),
   };
+  let monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-  let data = await d3.csv('../dataset/data-1576381744223.csv');
+  let data = await d3.csv('../dataset/data.csv');
   for (let est of data) {
     est.geopoint = JSON.parse(est.geopoint);
     est.twoDigit = parseInt(`${est.NAICSCD}`.slice(0, 2) || 'NULL');
@@ -26,7 +27,7 @@
   loadEstablishments(xf);
 
   function loadEstablishments(xf) {
-    let idDim = xf.dimension(function(d) {
+    let idDim = xf.dimension((d) => {
       return d.id;
     });
     let idGroup = idDim.group().reduce(
@@ -63,7 +64,7 @@
     let dateDim = xf.dimension((d) => {
       return d.datetime;
     });
-    // Summarize volume by quarter
+
     let quarterDim = xf.dimension((d) => {
       let month = d.datetime.getMonth();
       if (month <= 2) {
@@ -80,7 +81,6 @@
       return d.id;
     });
 
-    // Counts per weekday
     let dayOfWeek = xf.dimension((d) => {
       let day = d.datetime.getDay();
       let name = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -88,11 +88,9 @@
     });
     var dayOfWeekGroup = dayOfWeek.group();
 
-    var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     let monthDim = xf.dimension((d) => {
       let month = d.datetime.getMonth();
       return monthNames[month];
-      // return d.month;
     });
     let monthGroup = monthDim.group();
 
@@ -100,7 +98,6 @@
       return d.year;
     });
     let yearGroup = yearDim.group();
-    
 
     loadMap(idDim, idGroup);
     loadPieNAICS(twoDigitDim, twoDigitGroup);
@@ -108,7 +105,7 @@
     loadBarDayWeek(dayOfWeek, dayOfWeekGroup);
     loadDatatable(dateDim);
     loadMonthlyChart(monthDim, monthGroup);
-    loadBarYear(yearDim,yearGroup)
+    loadBarYear(yearDim, yearGroup);
     dc.renderAll();
   }
 
@@ -176,7 +173,7 @@
         return naicsKeys[d.key] ? naicsKeys[d.key].color : 'black';
       })
       .renderLabel(true)
-      .label(function(d) {
+      .label((d) => {
         if (chart.pie.hasFilter() && !chart.pie.hasFilter(d.key)) {
           return d.key + '(0%)';
         }
@@ -202,11 +199,11 @@
       .controlsUseVisibility(true)
       // Assign colors to each value in the x scale domain
       .ordinalColors(['#3182bd', '#6baed6', '#9ecae1', '#c6dbef', '#dadaeb'])
-      .label((d)=> {
+      .label((d) => {
         return d.key.split('.')[1];
       })
       // Title sets the row text
-      .title(function(d) {
+      .title((d) => {
         return d.value;
       })
       .elasticX(true)
@@ -218,37 +215,37 @@
     let columns = [
       {
         label: 'ID',
-        format: function(d) {
+        format: (d) => {
           return d.id;
         },
       },
       {
         label: 'Name',
-        format: function(d) {
+        format: (d) => {
           return d.CONAME;
         },
       },
       {
         label: 'Date',
-        format: function(d) {
+        format: (d) => {
           return d.date;
         },
       },
       {
         label: 'County',
-        format: function(d) {
+        format: (d) => {
           return d.COUNTY;
         },
       },
       {
         label: 'NAICSCD',
-        format: function(d) {
+        format: (d) => {
           return d.NAICSCD;
         },
       },
       {
         label: 'NAICSDS',
-        format: function(d) {
+        format: (d) => {
           return d.NAICSDS;
         },
       },
@@ -265,7 +262,7 @@
       .sortBy((d) => {
         return d.datetime;
       })
-      .on('renderlet', function(table) {
+      .on('renderlet', (table) => {
         table.selectAll('.dc-table-group').classed('info', true);
       })
       .on('preRender', updateResult)
@@ -274,22 +271,20 @@
   }
 
   function loadMonthlyChart(monthDim, monthGroup) {
-    // console.log(monthDim.filter(2));
-    console.log(all.value());
-    console.log(monthGroup.all());
-    var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     chart.monthBarChart
       .dimension(monthDim)
       .group(monthGroup)
       .controlsUseVisibility(true)
       .margins({
-        top:    Math.round(chart.monthBarChart.height() * 0.02, 1),
-        right:  Math.round(chart.monthBarChart.width() * 0.04, 1),
-        bottom: Math.round(chart.monthBarChart.height() * 0.10, 1),
-        left:   Math.round(chart.monthBarChart.width() * 0.06, 1)
+        top: Math.round(chart.monthBarChart.height() * 0.02, 1),
+        right: Math.round(chart.monthBarChart.width() * 0.04, 1),
+        bottom: Math.round(chart.monthBarChart.height() * 0.1, 1),
+        left: Math.round(chart.monthBarChart.width() * 0.06, 1),
       })
       .barPadding(0.04)
-      .title((d) => { return d.key +': '+ d.value.toLocaleString(); })
+      .title((d) => {
+        return d.key + ': ' + d.value.toLocaleString();
+      })
       .x(d3.scaleOrdinal().domain(monthNames))
       .xUnits(dc.units.ordinal)
       .elasticY(true);
@@ -300,11 +295,11 @@
       .group(yearGroup)
       .dimension(yearDim)
       .controlsUseVisibility(true)
-      .label((d)=> {
-        return d.key
+      .label((d) => {
+        return d.key;
       })
       // Title sets the row text
-      .title(function(d) {
+      .title((d) => {
         return d.value;
       })
       .elasticX(true)

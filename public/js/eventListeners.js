@@ -1,4 +1,6 @@
 $(document).ready(() => {
+  d3.select('.vehicleId').text('2NKHHJ7X2EM422350');
+  d3.select('.businessYear').text('2014');
   // DATA TABLE PAGINATION BEGIN
   window.ofs = 0;
   window.pag = 25;
