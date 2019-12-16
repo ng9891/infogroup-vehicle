@@ -16,14 +16,14 @@ $ npm i
 This application was develop using the powerful libary [dc-js](https://github.com/dc-js).
 
 ### Main Screen
-![alt text](https://puu.sh/EQ6AD/5d599139ef.png "Main screen") 
+![alt text](https://puu.sh/EQ9ad/fc1560ee1d.png "Main screen") 
 
 ### CSV Header
 Current CSV file is the output of a query to the database:
 ```
-- id: row number.
+- id: Row number.
 - CONAME: Company name.
-- date: format YYYY-MM-DD.
+- date: Format YYYY-MM-DD.
 - geopoint: GeoJSON of the geometry for the business point.
 - PRMSTATE: State of the business.
 - COUNTY: County of the business.

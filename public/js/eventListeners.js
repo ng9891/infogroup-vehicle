@@ -42,7 +42,7 @@ $(document).ready(() => {
     setTimeout(() => {
       let map = chart.marker.map();
       $('#map .dc-leaflet')
-        .css('height', `${$('.mapContainer').height()-30}px`)
+        .css('height', `${$('.mapContainer').height()-60}px`)
         .css('width', `${$('.mapContainer').width()}px`);
       map.invalidateSize();
     }, 400);

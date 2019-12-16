@@ -285,7 +285,7 @@
       .title((d) => {
         return d.key + ': ' + d.value.toLocaleString();
       })
-      .x(d3.scaleOrdinal().domain(monthNames))
+      .x(d3.scaleBand().domain(monthNames))
       .xUnits(dc.units.ordinal)
       .elasticY(true);
   }

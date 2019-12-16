@@ -10,12 +10,26 @@ body {
   height: 100%;
   font-size: 14px;
   /* background: #ebeff2; */
-  background: #F6F6F6;
+  background: #f6f6f6;
+  padding-top: 50px;
 }
 
-/* .mapContainer{
-  height: 100%;
-} */
+.bodyTitle {
+  position: fixed;
+  padding-top: 15px;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  z-index: 1001;
+  background:#6bb9d2;
+}
+
+.chartTitle {
+  padding: 15px 15px 0 15px;
+}
+.resetTitle {
+  padding-left: 15px;
+}
 #map {
   width: 100%;
   height: 87vh;
@@ -31,19 +45,6 @@ body {
 .datatableContainer {
   margin-top: 25px;
 }
-/* #datatable {
-  display: table;
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-td,
-th {
-  padding: 0;
-  margin: 0;
-  border: 1px solid #dddddd;
-  white-space: nowrap;
-  text-align: left;
-}*/
 
 .table tbody tr.info td {
   background-color: #d9edf7;
@@ -56,5 +57,5 @@ th {
 #pagination {
   width: 100%;
   text-align: left;
-  padding: 0 0 5px 0;
+  padding: 5px;
 }
