@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Infogroup - Vehicle</title>
+
+  <link rel="stylesheet" type="text/css" href="./stylesheet/src/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="./stylesheet/src/dc.min.css" />
+  <link rel="stylesheet" type="text/css" href="./stylesheet/src/leaflet.css" />
+  <link rel="stylesheet" type="text/css" href="./stylesheet/src/MarkerCluster.css" />
+  <link rel="stylesheet" type="text/css" href="./stylesheet/src/MarkerCluster.Default.css" />
+  <link rel="stylesheet" type="text/css" href="./stylesheet/src/leaflet-legend.css" />
+  <link rel="stylesheet" type="text/css" href="./stylesheet/main.css" />
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 col-sm-6">
+        <h4><strong>VEHICLE - 2NKHHJ7X2EM422350</strong></h4>
+      </div>
+    </div>
+    <div class="row">
+
+      <div class="col-sm-12 col-md-5 mapColumn">
+        <div class="card mapContainer">
+          <div id="map">
+            <h5 class='chartTitle'>Business Points - 2014</h5>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-7">
+        <div class="row">
+          <div class="col-sm-12 col-md-6">
+            <div class="card">
+              <div id="pie">
+                <h5 class='chartTitle'>NAICSCD</h5>
+                <span class='reset' style='visibility: hidden;'>
+                  Current filter: <span class='filter'></span>
+                </span>
+                <a class='reset' href='javascript:chart.pie.filterAll(); dc.redrawAll();'
+                  style='visibility: hidden;'>reset
+                </a>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-6">
+            <div class="card">
+              <div id="quarter-chart">
+                <h5 class='chartTitle'>Quarter</h5>
+                <span class='reset' style='visibility: hidden;'>
+                  Current filter: <span class='filter'></span>
+                </span>
+                <a class='reset' href='javascript:chart.quarterChart.filterAll(); dc.redrawAll();'
+                  style='visibility: hidden;'>reset
+                </a>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 col-md-6">
+            <div class="card">
+              <div id="day-of-week-chart">
+                <h5 class='chartTitle'>Day of the Week</h5>
+                <span class='reset' style='visibility: hidden;'>
+                  Current filter: <span class='filter'></span>
+                </span>
+                <a class='reset' href='javascript:chart.dayOfTheWeekChart.filterAll(); dc.redrawAll();'
+                  style='visibility: hidden;'>reset
+                </a>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-6">
+              <div class="card">
+                <div id="barYearChart">
+                  <h5 class='chartTitle'>Year</h5>
+                  <span class='reset' style='visibility: hidden;'>
+                    Current filter: <span class='filter'></span>
+                  </span>
+                  <a class='reset' href='javascript:chart.barYearChart.filterAll(); dc.redrawAll();'
+                    style='visibility: hidden;'>reset
+                  </a>
+                  <div class="clearfix"></div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <div class="card">
+                  <div id="monthly-chart">
+                    <h5 class='chartTitle'>Monthly Chart</h5>
+                    <span class='reset' style='visibility: hidden;'>
+                      Current filter: <span class='filter'></span>
+                    </span>
+                    <a class='reset' href='javascript:chart.monthBarChart.filterAll(); dc.redrawAll();'
+                      style='visibility: hidden;'>reset
+                    </a>
+                    <div class="clearfix"></div>
+                  </div>
+                </div>
+              </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-12">
+        <div class="card datatableContainer">
+          <div id="pagination">
+            Results: <span class="pagStart"></span>-<span class="pagEnd"></span> of <span class="pagTotalSize"></span>
+            <span class="pagTotalSizeDesc"></span> | <a class="resetAll" href="javascript:dc.filterAll(); dc.renderAll();">Reset All</a>
+            <button class="pagPrev btn btn-secondary" onclick="prev()">Prev</button>
+            <button class="pagNext btn btn-secondary" onclick="next()">Next</button>
+          </div>
+          <table id="datatable" class="table table-hover dc-data-table"></table>
+          <div id="pagination">
+            Results: <span class="pagStart"></span>-<span class="pagEnd"></span> of <span class="pagTotalSize"></span>
+            <span class="pagTotalSizeDesc"></span> | <a class="toTopBtn" href="javascript:void(0);">To the Top</a>
+            <button class="pagPrev btn btn-secondary" onclick="prev()">Prev</button>
+            <button class="pagNext btn btn-secondary" onclick="next()">Next</button>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- SCRIPTS -->
+  <script src="./js//src/jquery-3.4.1.min.js"></script>
+  <script src="./js/src/crossfilter.min.js"></script>
+  <script src="./js/src/d3.min.js"></script>
+  <script src="./js/src/dc.min.js"></script>
+  <script src="./js/src/leaflet.js"></script>
+  <script src="./js/src/leaflet.markercluster.js"></script>
+  <script src="./js/src/dc.leaflet.min.js"></script>
+
+  <script src="./naicsKeys.js"></script>
+  <script src="./js/eventListeners.js"></script>
+  <script src="./js/main.js"></script>
+</body>
+
+</html>

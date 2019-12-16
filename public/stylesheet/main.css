@@ -1,0 +1,60 @@
+/* Resetting margins for different browser */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  font-size: 14px;
+  /* background: #ebeff2; */
+  background: #F6F6F6;
+}
+
+/* .mapContainer{
+  height: 100%;
+} */
+#map {
+  width: 100%;
+  height: 87vh;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.card {
+  margin-top: 15px;
+  padding-bottom: 20px;
+}
+.datatableContainer {
+  margin-top: 25px;
+}
+/* #datatable {
+  display: table;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+td,
+th {
+  padding: 0;
+  margin: 0;
+  border: 1px solid #dddddd;
+  white-space: nowrap;
+  text-align: left;
+}*/
+
+.table tbody tr.info td {
+  background-color: #d9edf7;
+}
+
+.table-hover tbody tr.info:hover td {
+  background-color: #c4e3f3;
+}
+
+#pagination {
+  width: 100%;
+  text-align: left;
+  padding: 0 0 5px 0;
+}
